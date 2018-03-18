@@ -14,7 +14,7 @@ images = []
 # Reading the image using OpenCV
 image = cv2.imread(filename)
 # Resizing the image to our desired size and preprocessing will be done exactly as done during training
-image = cv2.resize(image, (image_size, image_size), cv2.INTER_LINEAR)
+image = cv2.resize(image, (image_size, image_size),0,0, cv2.INTER_LINEAR)
 images.append(image)
 images = np.array(images, dtype=np.uint8)
 images = images.astype('float32')
@@ -25,7 +25,7 @@ x_batch = images.reshape(1, image_size,image_size,num_channels)
 ## Let us restore the saved model
 sess = tf.Session()
 # Step-1: Recreate the network graph. At this step only graph is created.
-saver = tf.train.import_meta_graph('qap-model.meta')
+saver = tf.train.import_meta_graph('rl-uni-model.meta')
 # Step-2: Now let's load the weights saved using the restore method.
 saver.restore(sess, tf.train.latest_checkpoint('./'))
 
@@ -46,5 +46,4 @@ y_test_images = np.zeros((1, 2))
 feed_dict_testing = {x: x_batch, y_true: y_test_images}
 result=sess.run(y_pred, feed_dict=feed_dict_testing)
 # result is of this format [probabiliy_of_rose probability_of_sunflower]
-print(['uni','rl'])
 print(result)
