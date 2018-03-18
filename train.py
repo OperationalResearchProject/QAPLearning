@@ -193,7 +193,7 @@ def train(num_iteration):
 
 			show_progress(epoch, feed_dict_tr, feed_dict_val, val_loss)
 			saver.save(session,
-			           '/home/geo/Projet/ML/cv-tricks.com/Tensorflow-tutorials/tutorial-2-image-classifier/rl-uni-model')
+			           '/home/geo/Projet/ML/cv-tricks.com/Tensorflow-tutorials/tutorial-2-image-classifier/rl-uni-model/')
 
 	total_iterations += num_iteration
 
