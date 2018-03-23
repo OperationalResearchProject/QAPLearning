@@ -1,10 +1,6 @@
 import dataset
 import tensorflow as tf
-import time
-from datetime import timedelta
-import math
-import random
-import numpy as np
+import os
 
 # Adding Seed so that random initialization is consistent
 from numpy.random import seed
@@ -15,6 +11,8 @@ from tensorflow import set_random_seed
 set_random_seed(2)
 
 batch_size = 32
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 # Prepare input data
 classes = ['rl', 'uni']
@@ -174,8 +172,7 @@ saver = tf.train.Saver()
 def train(num_iteration):
 	global total_iterations
 
-	for i in range(total_iterations,
-	               total_iterations + num_iteration):
+	for i in range(total_iterations, total_iterations + num_iteration):
 
 		x_batch, y_true_batch, _, cls_batch = data.train.next_batch(batch_size)
 		x_valid_batch, y_valid_batch, _, valid_cls_batch = data.valid.next_batch(batch_size)
@@ -192,8 +189,7 @@ def train(num_iteration):
 			epoch = int(i / int(data.train.num_examples / batch_size))
 
 			show_progress(epoch, feed_dict_tr, feed_dict_val, val_loss)
-			saver.save(session,
-			           '/home/geo/Projet/ML/cv-tricks.com/Tensorflow-tutorials/tutorial-2-image-classifier/rl-uni-model/')
+			saver.save(session, dir_path + '/model-20/')
 
 	total_iterations += num_iteration
 
