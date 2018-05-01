@@ -1,5 +1,9 @@
 # Convolutional neural network for QAP Problem
 
+# Results
+
+[Available here !](https://github.com/OperationalResearchProject/models)
+
 # Train
 
 add your train dataset in training_data folder and use :
